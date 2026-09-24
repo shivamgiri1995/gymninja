@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Replaced by `flutter build web --base-href`; GitHub Pages serves under /gymninja/. -->
+  <base href="/gymninja/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="GymNinja: free gym management. Members, fees, QR check-in and plans for owners; workouts, diet and progress for members.">
+  <meta name="theme-color" content="#0D1014">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="GymNinja">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>GymNinja</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    /* shown until Flutter paints its first frame over it */
+    html, body { margin: 0; height: 100%; background: #0D1014; }
+    #boot { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 14px; color: #8D96A1; font: 600 14px system-ui, -apple-system, "Segoe UI", sans-serif; }
+    #boot .plate { width: 56px; height: 56px; border-radius: 50%; background: #2350D6; display: grid; place-items: center;
+                   animation: spin 1.2s linear infinite; }
+    #boot .plate::after { content: ""; width: 18px; height: 18px; border-radius: 50%; background: #0D1014; box-shadow: 0 0 0 5px #F5C21B; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { #boot .plate { animation: none; } }
+  </style>
+</head>
+<body>
+  <div id="boot"><div class="plate"></div>Loading GymNinja…</div>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
