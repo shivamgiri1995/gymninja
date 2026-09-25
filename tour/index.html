@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="GymNinja: free gym management app for owners and members. A tour of every screen.">
+<meta name="theme-color" content="#2F5BFF">
+<link rel="icon" type="image/png" href="../favicon.png">
+<title>GymNinja · App tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#EEF1F7; --panel:#FFFFFF; --sunk:#E3E8F2; --line:#D7DDEA; --text:#0E1525; --muted:#5E6880;
+  --blue:#2F5BFF; --blue2:#1B3BD6; --blueSoft:#E2E9FF; --plate:#F2B705; --plateInk:#1A1300;
+  --bezel:#0C0F16; --shadow:0 24px 60px -24px rgba(20,32,70,.35);
+  --font:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#090C13; --panel:#121724; --sunk:#1A2131; --line:#252D40; --text:#EEF1F8; --muted:#8D96AB;
+    --blue:#6E8BFF; --blue2:#3D5CFF; --blueSoft:#1A2448; --plate:#FFC928; --bezel:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#090C13; --panel:#121724; --sunk:#1A2131; --line:#252D40; --text:#EEF1F8; --muted:#8D96AB;
+  --blue:#6E8BFF; --blue2:#3D5CFF; --blueSoft:#1A2448; --plate:#FFC928; --bezel:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 var(--font);padding-inline:16px;padding-block:0 40px;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:8px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.num{font-variant-numeric:tabular-nums}
+
+/* top */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-16px;padding:12px 16px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px;margin-right:auto}
+.plate{width:30px;height:30px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:none}
+.plate::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 4px var(--plate)}
+.brand small{font-weight:600;color:var(--muted);font-size:13px;letter-spacing:0}
+.seg{display:flex;padding:3px;border-radius:12px;background:var(--sunk)}
+.seg button{border:0;background:none;padding:7px 14px;border-radius:9px;font-weight:700;font-size:13.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--text);box-shadow:0 2px 8px -2px rgba(0,0,0,.18)}
+.chapters{max-width:1240px;margin:10px auto 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chap{flex:none;border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 13px;font-weight:700;font-size:13px;color:var(--muted);display:flex;gap:7px;align-items:center}
+.chap b{font-weight:700;font-size:11.5px;color:var(--muted);opacity:.8}
+.chap[aria-current="true"]{background:var(--text);border-color:var(--text);color:var(--bg)}
+.chap[aria-current="true"] b{color:var(--bg)}
+.chap.pt{border-color:color-mix(in srgb,var(--plate) 60%,var(--line))}
+
+/* tour */
+.tour{max-width:1240px;margin:22px auto 0;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:36px;align-items:start}
+@media (max-width:900px){.tour{grid-template-columns:1fr;gap:20px}}
+.stage{display:grid;place-items:center;min-height:0}
+.phone{width:min(360px,100%);aspect-ratio:390/844;background:var(--bezel);border-radius:46px;padding:11px;box-shadow:var(--shadow),inset 0 0 0 2px #2a2f3a;position:relative}
+.phone .screen{position:relative;height:100%;border-radius:36px;overflow:hidden;background:#F4F6FB}
+.phone .status{position:absolute;inset:0 0 auto 0;height:30px;display:flex;justify-content:space-between;align-items:center;padding:0 24px;font-size:12px;font-weight:700;color:#0E1525;z-index:2;background:linear-gradient(#F4F6FB 70%,transparent)}
+.phone .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:96px;height:24px;border-radius:14px;background:#000;z-index:3}
+.phone .scroll{position:absolute;inset:30px 0 0 0;overflow-y:auto;scrollbar-width:thin}
+.phone img{display:block;width:100%;height:auto}
+.hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:4;background:rgba(14,21,37,.82);color:#fff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;pointer-events:none;transition:opacity .3s}
+.laptop{width:100%;max-width:820px}
+.laptop .lid{background:var(--bezel);border-radius:18px 18px 6px 6px;padding:14px 14px 18px;box-shadow:var(--shadow)}
+.laptop .lid img{display:block;width:100%;border-radius:6px}
+.laptop .base{height:14px;margin:0 -4%;background:linear-gradient(#C9CED9,#9AA1B0);border-radius:0 0 16px 16px}
+.laptop .base::before{content:"";display:block;width:16%;height:6px;margin:0 auto;background:rgba(0,0,0,.18);border-radius:0 0 8px 8px}
+
+.notes{position:sticky;top:130px;display:grid;gap:16px}
+@media (max-width:900px){.notes{position:static}}
+.crumb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.crumb .dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.crumb.pt .dot{background:var(--plate)}
+.notes h2{font-size:clamp(26px,3.2vw,34px);font-weight:800;letter-spacing:-.9px;line-height:1.08}
+.points{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.points li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;font-size:15px}
+.points li::before{content:"";width:8px;height:8px;margin:8px 0 0 6px;border-radius:2px;background:var(--blue);transform:rotate(45deg)}
+.crumb.pt ~ .points li::before{background:var(--plate)}
+.say{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:14px;color:var(--muted)}
+.say b{color:var(--text)}
+.nav{display:flex;align-items:center;gap:10px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:11px 16px;font-weight:800;font-size:14.5px;display:inline-flex;gap:8px;align-items:center}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff;flex:1;justify-content:center}
+.btn[disabled]{opacity:.45;cursor:default}
+.count{font-weight:700;color:var(--muted);font-size:13px;min-width:62px;text-align:center}
+.bar{height:4px;border-radius:4px;background:var(--sunk);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--plate));transition:width .3s}
+.keys{font-size:12px;color:var(--muted)}
+kbd{font:600 11px var(--font);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 5px;background:var(--panel)}
+
+.strip{max-width:1240px;margin:26px auto 0;display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+.thumb{flex:none;width:74px;border:0;background:none;padding:0;display:grid;gap:5px;justify-items:center;font-size:10.5px;font-weight:700;color:var(--muted);text-align:center;line-height:1.25}
+.thumb span.img{width:74px;height:120px;border-radius:12px;overflow:hidden;border:2px solid transparent;background:var(--sunk);display:block}
+.thumb.wide{width:150px}
+.thumb.wide span.img{width:150px;height:94px}
+.thumb img{width:100%;display:block}
+.thumb[aria-current="true"] span.img{border-color:var(--blue)}
+.thumb[aria-current="true"]{color:var(--text)}
+
+/* grid */
+.all{max-width:1240px;margin:22px auto 0;display:grid;gap:34px}
+.all h3{font-size:20px;font-weight:800;letter-spacing:-.4px;margin-bottom:12px;display:flex;align-items:baseline;gap:10px}
+.all h3 small{font-size:13px;color:var(--muted);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.card{border:0;background:none;padding:0;text-align:left;display:grid;gap:7px}
+.card span.img{display:block;aspect-ratio:390/700;border-radius:18px;overflow:hidden;background:var(--panel);box-shadow:0 8px 24px -14px rgba(20,32,70,.5);border:1px solid var(--line)}
+.card.wide{grid-column:span 2}
+.card.wide span.img{aspect-ratio:16/10}
+.card img{width:100%;display:block}
+.card b{font-size:13.5px}
+.card:hover span.img{border-color:var(--blue)}
+@media (max-width:420px){.card.wide{grid-column:span 1}}
+@media (prefers-reduced-motion:reduce){.bar i,.hint{transition:none}}
+
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.links a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:13.5px;padding:7px 13px;border-radius:10px;border:1px solid var(--line);color:var(--text);background:var(--panel)}
+.links a.go{background:var(--blue);border-color:var(--blue);color:#fff}
+.foot{max-width:1240px;margin:36px auto 0;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><span class="plate" aria-hidden="true"></span>GymNinja <small>app walkthrough</small></div>
+    <div class="links">
+      <a class="go" href="../">Open the app</a>
+      <a href="https://github.com/shivamgiri1995/gymninja/releases/latest/download/GymNinja.apk">Android APK</a>
+    </div>
+    <div class="seg" role="group" aria-label="View">
+      <button id="v-tour" aria-pressed="true">Tour</button>
+      <button id="v-all" aria-pressed="false">All screens</button>
+    </div>
+  </div>
+  <nav class="chapters" id="chapters" aria-label="Chapters"></nav>
+</header>
+
+<main id="tour" class="tour">
+  <div class="stage" id="stage"></div>
+  <aside class="notes" aria-live="polite">
+    <div class="crumb" id="crumb"><span class="dot"></span><span id="crumb-t"></span></div>
+    <h2 id="title"></h2>
+    <ul class="points" id="points"></ul>
+    <div class="say" id="say"></div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="nav">
+      <button class="btn" id="prev" aria-label="Previous screen">←</button>
+      <span class="count num" id="count"></span>
+      <button class="btn pri" id="next">Next →</button>
+    </div>
+    <div class="keys"><kbd>←</kbd> <kbd>→</kbd> to move · scroll inside the phone for long screens</div>
+  </aside>
+</main>
+<div class="strip" id="strip" aria-label="Screens in this chapter"></div>
+
+<main id="all" class="all" hidden></main>
+<p class="foot">GymNinja · free for gyms · screens from the demo gym "Iron Temple Fitness"</p>
+
+<script>
+const CH = [
+  {id:'start', name:'Shuruaat'},
+  {id:'owner', name:'Gym owner'},
+  {id:'pt-owner', name:'Personal training · owner', pt:true},
+  {id:'member', name:'Member app'},
+  {id:'pt-member', name:'Personal training · member', pt:true},
+  {id:'laptop', name:'Laptop pe'},
+];
+const S = [
+  // start
+  ['01-welcome','start','Welcome screen',['Owner "I run a gym", member "I train at a gym" chunte hain','Koi bhi "Try a demo gym" se bina account ke poora app dekh sakta hai','Web link aur Android APK dono se khulta hai'],'Poora app <b>free</b> hai: koi VPS nahi, koi SMS ya WhatsApp bill nahi.'],
+  ['03-sign-in','start','Sign in',['Sirf mobile number + PIN/password','Na OTP, na SMS ka kharcha','Ek hi account owner aur member dono ho sakta hai'],'Login mobile number se hota hai, email ki zaroorat nahi.'],
+  ['04-sign-up','start','Owner account',['Naya owner 10 minute mein gym set up karta hai','Gym ka naam, rang, branches (1–3), plans aur fees','Har branch ko apna desk QR milta hai'],'Self-serve SaaS: har gym apna setup khud karta hai.'],
+  // owner
+  ['10-owner-dashboard','owner','Dashboard',['<b>Inside now</b>: abhi gym mein kitne log hain, capacity ke saath','Aaj ka footfall, fees paid / pending / overdue','Ghante ke hisaab se footfall graph','Workout aur diet PDF kitno ne khole'],'Multi-branch: upar se "All branches" ya ek branch chuno, sab numbers badal jaate hain.'],
+  ['11-owner-members','owner','Members',['Join requests: jo QR scan karke aaye, desk approve karta hai','Search, aur filters: Active, Expiring, Expired, Has dues','Har member ka plan, valid till, last visit aur dues'],'Member khud app se join karta hai. Owner ko sirf Approve dabana hai.'],
+  ['12-owner-member-sheet','owner','Member detail',['Plan, valid till, fee, paid, due, last visit','Record payment, Renew, WhatsApp reminder','WhatsApp message pehle se likha hota hai, bas Send dabao'],'WhatsApp click-to-send hai, isliye koi API bill nahi.'],
+  ['13-owner-record-payment','owner','Record payment',['Cash, UPI ya card','Receipt number apne aap banta hai','Dues turant update'],null],
+  ['14-owner-register','owner','Register member',['Desk pe naya member: naam, mobile, branch, plan','Paid now + mode; baaki due ban jaata hai','Goal (fat loss / muscle gain) se sahi PDF milte hain'],null],
+  ['15-owner-fees','owner','Fees',['<b>UPI to confirm</b>: member ne UPI se pay karke UTR daala, desk bank app mein match karke Received dabata hai','Dues list, overdue highlight, WhatsApp reminder ek tap mein'],'Paisa seedha gym ke UPI mein jaata hai. Koi payment gateway ya cut nahi.'],
+  ['16-owner-pdfs','owner','Workout & diet PDFs',['Hafte ka workout, diet plan PDF upload karo','Sabko, ek goal waalon ko, naye members ko ya ek member ko bhejo','Kitno ne khola, wo dikhta hai'],null],
+  ['40-owner-more','owner','Settings',['Desk QR posters, messages & reports','Fees by UPI: gym ka UPI ID','Check-in location: branch pe pin lagao, door se check-in band','Plan fees, staff (manager, trainer, desk)'],null],
+  ['41-owner-desk-qr','owner','Desk QR',['Har branch ka ek QR, print karke desk pe lagao','Member scan kare: pehli baar = check-in, jaate waqt = check-out','Phone camera se scan karne pe seedha app khulta hai'],'Attendance ke liye koi machine nahi chahiye, sirf ek printed QR.'],
+  ['42-owner-messages','owner','Messages & reports',['Notice, report, fee reminder, sab members ke inbox mein','Kitno ne khola, ye bhi dikhta hai','SMS/WhatsApp ka koi kharcha nahi'],null],
+  ['43-platform-admin','owner','Platform admin',['Sirf aapke liye (GymNinja chalane wale)','Kitne gyms, members, aaj ke check-ins','Free tier kitna bhara: database, storage, users'],'Isse pata chalta hai kab upgrade karna hai.'],
+  // PT owner
+  ['20-pt-clients','pt-owner','PT clients',['Gym owner hi coach: sab PT clients ek jagah','Har client ke sessions, plan kitna follow kiya, kab tak valid','Is hafte ka plan publish hua ya nahi, dues'],'PT ki kamai gym fees se <b>bilkul alag</b> dikhti hai.'],
+  ['21-pt-enable','pt-owner','Enable PT',['Kisi bhi member ke saamne "Can buy PT" switch','Switch on karte hi member ke app mein Unlock button','Desk pe paisa diya ho toh seedha Enroll'],null],
+  ['22-pt-payments','pt-owner','PT payments',['Member ne app se UPI kiya: UTR match karke Received','Received dabate hi member ka PT unlock','Dues ki WhatsApp reminder, desk pe payment record'],null],
+  ['23-pt-packages','pt-owner','PT packages',['Apne rate khud: Monthly, Quarterly, session pack','Kitne din valid, kitne sessions','Kisi package ko hide bhi kar sakte ho'],null],
+  ['24-pt-enroll','pt-owner','Enroll at the desk',['Package, start date, abhi kitna diya, mode','Renew karne pe naya package purane ke khatam hone ke baad shuru'],null],
+  ['25-pt-plan-form','pt-owner','Weekly plan form',['Mon–Sun chuno, din ka focus likho (Push, Legs…) ya Rest day','Har exercise: naam (search), sets, reps, kg, rest, coach tip','Template se ek click mein poora din','Save draft ya <b>Publish to member</b>'],'Draft member ko nahi dikhta. Publish karte hi member ke phone pe.'],
+  ['26-pt-plan-meals','pt-owner','Meals in the form',['Har meal: time, naam, khana + quantity, kcal, protein','Upar total calories aur protein apne aap','Veg / non-veg diet template load karo'],null],
+  ['27-pt-templates','pt-owner','Templates',['Push, Pull, Legs, Full body, Upper, Lower, Cardio + core','Load karke weights client ke hisaab se badlo','"Copy last week" aur "Copy to other days" se hafta 5 minute mein'],null],
+  ['28-pt-week','pt-owner','Week at a glance',['Poore hafte ka table: har din ka focus, exercises, meals, calories','Kisi din pe Edit dabao, form wahi din khol deta hai'],null],
+  ['29-pt-progress','pt-owner','Client progress',['7 din mein plan kitna follow kiya (%)','Weekly check-ins: weight, neend, energy, note','Weight graph, sessions +/−'],null],
+  ['30-pt-client-payments','pt-owner','Client payments',['Package, fee, paid, due, valid till','Record payment, Renew, WhatsApp reminder','Package khatam hone ke 3 din baad member ka plan phir lock'],null],
+  // member
+  ['50-member-home','member','Member home',['Gym ke rang mein branded app','Ek tap: <b>Scan desk QR to check in</b>','Aaj ka workout, streak, weight, steps','Personal training aur monthly report ke shortcuts'],'Ek hi member app, har gym ke apne naam aur rang ke saath.'],
+  ['51-member-inbox','member','Inbox',['Gym ke notices aur monthly report','Kholte hi owner ko "opened" dikhta hai'],null],
+  ['52-member-report','member','Monthly report',['Mahine ki visits, training days, weight change, steps','Attendance calendar, naye PRs','WhatsApp pe share'],null],
+  ['53-member-workout','member','Workout',['Split: Push/Pull/Legs, Full body, Upper/Lower','Har set ka weight aur reps log karo, tick karo','Pichli baar kitna uthaya tha, wo bhi dikhta hai'],null],
+  ['54-member-diet','member','Diet',['Goal ke hisaab se diet, veg / non-veg','Calories aur protein ka hisaab, meals tick karo','Gym ka diet PDF bhi yahin'],null],
+  ['56-member-progress','member','Progress',['Weight graph, BMI (Asian scale)','Body measurements: chest, waist, arms…','Personal records apne aap'],null],
+  ['57-member-fees','member','Fees',['Kitna due hai','UPI app kholo, pay karo, UTR daalo','Desk confirm kare toh receipt'],null],
+  // PT member
+  ['60-pt-locked','pt-member','PT locked',['Subscription ke bina Coach tab blur + lock','Peeche asli plan ki jhalak dikhti hai','"Unlock Personal Training"'],'Member ko pehle se dikhta hai ki paise dene par kya milega.'],
+  ['61-pt-choose-package','pt-member','Choose package',['Gym ke PT packages, price aur sessions ke saath'],null],
+  ['62-pt-pay-upi','pt-member','Pay by UPI',['Gym ka UPI ID copy karo ya UPI app kholo','Pay karke 12-digit UTR daalo'],null],
+  ['63-pt-pending','pt-member','Payment sent',['Desk UTR match karta hai','Received dabate hi Coach tab unlock'],null],
+  ['55-member-coach','pt-member','Coach tab (unlocked)',['Coach card: sessions, kitne din bache, WhatsApp coach','Aaj ka workout: sets × reps @ kg, rest, coach ki tip, tick karo','Aaj ki diet: calories, protein, meals tick','Where you are now, coach ka note, weekly check-in'],'Member jo tick karta hai, wo owner ko "plan followed %" mein dikhta hai.'],
+  // laptop
+  ['70-laptop-dashboard','laptop','Dashboard on a laptop',['Desk ke computer pe side menu ke saath','Same data, bade screen pe'],null],
+  ['71-laptop-pt','laptop','PT on a laptop',['Clients ek saath grid mein'],null],
+  ['72-laptop-plan-form','laptop','Plan form on a laptop',['Exercises aur meals table ki tarah ek line mein','Laptop pe hafte ka plan banana sabse tez'],null],
+].map(([id,ch,title,points,say])=>({id,ch,title,points,say,wide:id.startsWith('7')}));
+
+const $=s=>document.querySelector(s);
+let i=0;
+const src=s=>`shots/${s.id}.webp`;
+
+function chapterOf(s){return CH.find(c=>c.id===s.ch);}
+
+function renderChapters(){
+  $('#chapters').innerHTML=CH.map(c=>{
+    const n=S.filter(s=>s.ch===c.id).length;
+    return `<button class="chap${c.pt?' pt':''}" data-ch="${c.id}" aria-current="${S[i].ch===c.id}">${c.name}<b class="num">${n}</b></button>`;
+  }).join('');
+}
+
+function device(s){
+  if(s.wide) return `<div class="laptop"><div class="lid"><img src="${src(s)}" alt="${s.title}"></div><div class="base"></div></div>`;
+  return `<div class="phone"><div class="screen"><div class="notch" aria-hidden="true"></div>
+    <div class="status" aria-hidden="true"><span>9:41</span><span>5G ▮▮▮ 86%</span></div>
+    <div class="scroll" id="scroller"><img src="${src(s)}" alt="${s.title}" id="shot"></div>
+    <div class="hint" id="hint" hidden>Scroll ↓ aur bhi hai</div></div></div>`;
+}
+
+function go(n,{scroll=false}={}){
+  i=Math.max(0,Math.min(S.length-1,n));
+  const s=S[i], c=chapterOf(s);
+  $('#stage').innerHTML=device(s);
+  $('#crumb').className='crumb'+(c.pt?' pt':'');
+  $('#crumb-t').textContent=c.name;
+  $('#title').textContent=s.title;
+  $('#points').innerHTML=s.points.map(p=>`<li><span>${p}</span></li>`).join('');
+  $('#say').hidden=!s.say; $('#say').innerHTML=s.say||'';
+  $('#count').textContent=`${i+1} / ${S.length}`;
+  $('#bar').style.width=((i+1)/S.length*100)+'%';
+  $('#prev').disabled=i===0;
+  $('#next').textContent=i===S.length-1?'Shuru se':'Next →';
+  renderChapters();
+  const inCh=S.filter(x=>x.ch===s.ch);
+  $('#strip').innerHTML=inCh.map(x=>`<button class="thumb${x.wide?' wide':''}" data-id="${x.id}" aria-current="${x.id===s.id}"><span class="img"><img src="${src(x)}" alt="" loading="lazy"></span>${x.title}</button>`).join('');
+  const img=$('#shot');
+  if(img){
+    const sc=$('#scroller'), hint=$('#hint');
+    const check=()=>{ const more=sc.scrollHeight-sc.clientHeight>40; hint.hidden=!more; hint.style.opacity=sc.scrollTop>30?0:1; };
+    img.complete?check():img.addEventListener('load',check,{once:true});
+    sc.addEventListener('scroll',check,{passive:true});
+  }
+  try{history.replaceState(null,'','#'+s.id)}catch(e){}
+  if(scroll) document.querySelector('.tour').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+$('#prev').onclick=()=>go(i-1);
+$('#next').onclick=()=>go(i===S.length-1?0:i+1);
+$('#chapters').addEventListener('click',e=>{
+  const b=e.target.closest('[data-ch]'); if(!b) return;
+  setView('tour'); go(S.findIndex(s=>s.ch===b.dataset.ch));
+});
+$('#strip').addEventListener('click',e=>{const b=e.target.closest('[data-id]'); if(b) go(S.findIndex(s=>s.id===b.dataset.id));});
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea')||$('#tour').hidden) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1);}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1);}
+});
+
+function renderAll(){
+  $('#all').innerHTML=CH.map(c=>{
+    const list=S.filter(s=>s.ch===c.id);
+    return `<section><h3>${c.name}<small class="num">${list.length} screens</small></h3><div class="cards">${
+      list.map(s=>`<button class="card${s.wide?' wide':''}" data-id="${s.id}"><span class="img"><img src="${src(s)}" alt="" loading="lazy"></span><b>${s.title}</b></button>`).join('')
+    }</div></section>`;
+  }).join('');
+}
+$('#all').addEventListener('click',e=>{const b=e.target.closest('[data-id]'); if(!b) return; setView('tour'); go(S.findIndex(s=>s.id===b.dataset.id),{scroll:true});});
+
+function setView(v){
+  const tour=v==='tour';
+  $('#tour').hidden=!tour; $('#strip').hidden=!tour; $('#all').hidden=tour;
+  $('#v-tour').setAttribute('aria-pressed',tour); $('#v-all').setAttribute('aria-pressed',!tour);
+  if(!tour && !$('#all').innerHTML) renderAll();
+}
+$('#v-tour').onclick=()=>setView('tour');
+$('#v-all').onclick=()=>setView('all');
+
+const start=S.findIndex(s=>'#'+s.id===location.hash);
+go(start<0?0:start);
+</script>
+
+</body>
+</html>
