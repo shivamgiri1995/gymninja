@@ -1,0 +1,35 @@
+{
+    "name": "GymNinja",
+    "short_name": "GymNinja",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#08090B",
+    "theme_color": "#08090B",
+    "description": "Free gym management: members, fees, QR check-in and personal training.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
